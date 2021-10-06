@@ -6,6 +6,7 @@ import LogInGoogle from "pages/LogInGoogle";
 import LogInKakao from "pages/LoginKakao";
 import LogInNaver from "pages/LoginNaver";
 import LogInFacebook from "pages/LoginFacebook";
+import { RouterPath } from "utils/constants";
 
 const Routes: React.FC = () => {
   return (
@@ -41,11 +42,3 @@ const Wrapper = styled.div`
   border: 2px solid grey;
   box-shadow: 5px -5px #bdbdbd;
 `;
-
-const RouterPath = {
-  HOME: "/",
-  GOOGLE: "/google",
-  KAKAO: "/kakao",
-  NAVER: "/naver",
-  FACEBOOK: "/facebook",
-};
