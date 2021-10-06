@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { KakaoUser } from "utils/type";
 import { ReactComponent as KakaoIcon } from "assets/kakao.svg";
+import { KAKAO_PROFILE_REQUEST_URL, RouterPath } from "utils/constants";
 
 declare global {
   interface Window {
@@ -25,7 +26,7 @@ const KakaoOAuth: React.FC = () => {
           scope: "account_email profile_image profile_nickname",
           success: function (auth: object) {
             Kakao.API.request({
-              url: "/v2/user/me",
+              url: KAKAO_PROFILE_REQUEST_URL,
               success: (res: any) => {
                 const kakao_account: KakaoUser = {
                   email: res.kakao_account.email,
@@ -33,7 +34,7 @@ const KakaoOAuth: React.FC = () => {
                 };
 
                 history?.push({
-                  pathname: "/kakao",
+                  pathname: RouterPath.KAKAO,
                   state: kakao_account,
                 });
               },

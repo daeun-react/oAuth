@@ -1,15 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from "react-google-login";
+import GoogleLogin, { GoogleLoginResponse } from "react-google-login";
+import { useHistory } from "react-router-dom";
+import { RouterPath } from "utils/constants";
 import { ReactComponent as GoogleIcon } from "assets/google.svg";
+import { GoogleUser } from "utils/type";
 
 const GoogleOAuth: React.FC = () => {
-  const googleLogin = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-    console.log(response);
+  const history = useHistory();
+
+  const googleLoginSuccess = (res: any) => {
+    const user: GoogleUser = res.profileObj;
+    history.push({ pathname: RouterPath.GOOGLE, state: user });
   };
 
-  const onFailure = (response: GoogleLoginResponse) => {
-    console.log(response);
+  const googleLoginFailure = (err: GoogleLoginResponse) => {
+    console.log(err);
   };
 
   return (
@@ -18,12 +24,12 @@ const GoogleOAuth: React.FC = () => {
       render={(renderProps) => (
         <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled}>
           <GoogleIcon />
-          <span>Google Login</span>
+          <span>구글 계정으로 로그인</span>
         </GoogleButton>
       )}
       buttonText="Login"
-      onSuccess={googleLogin}
-      onFailure={onFailure}
+      onSuccess={googleLoginSuccess}
+      onFailure={googleLoginFailure}
       cookiePolicy={"single_host_origin"}
     />
   );
@@ -37,14 +43,15 @@ const GoogleButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffa7a7;
+  background-color: #141518;
 
   svg {
     margin-right: 10px;
   }
 
   span {
-    color: white;
+    color: #fff;
+    font-weight: 600;
     font-size: 12pt;
   }
 `;
