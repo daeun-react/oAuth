@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import GoogleOAuth from "components/oauth/GoogleOAuth";
 import KakaoOAuth from "components/oauth/KakaoOAuth";
+import NaverOAuth from "components/oauth/NaverOAuth";
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <Login>
         <GoogleOAuth />
         <KakaoOAuth />
+        <NaverOAuth />
       </Login>
     </>
   );
