@@ -16,3 +16,10 @@ export interface KakaoUser {
     thumbnail_image_url: string;
   };
 }
+
+export interface NaverUser {
+  id: string;
+  email: string;
+  name: string;
+  profile_image: string;
+}
